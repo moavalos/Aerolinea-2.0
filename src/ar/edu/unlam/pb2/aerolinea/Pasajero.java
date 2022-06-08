@@ -5,13 +5,18 @@ public class Pasajero extends Persona {
 	private Boolean esVip;
 	private Double saldo;
 	private Pasaje pasaje;
+	
+	// LOS METODOS Y VARIABLES VIP PASARIAN A SER UNA CLASE APARTE PERO LO VOY A DEJAR ASI 
 	private Boolean vip;
+	
+	private Integer dni;
 
 	public Pasajero(String nombre, String apellido, Integer dni, Double saldo, Boolean vip) {
 		super(nombre, apellido, dni);
 		this.vip = vip;
 		this.saldo = saldo;
 		this.pasaje = pasaje;
+		this.dni = dni;
 
 	}
 
@@ -61,6 +66,14 @@ public class Pasajero extends Persona {
 
 	public void setVip(Boolean vip) {
 		this.vip = vip;
+	}
+
+	public Integer getDni() {
+		return dni;
+	}
+
+	public void setDni(Integer dni) {
+		this.dni = dni;
 	}
 
 	public Pasaje getPasaje() {
