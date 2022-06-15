@@ -16,22 +16,20 @@ public class Aerolinea {
 
 	public Aerolinea(String nombre) {
 		this.nombre = nombre;
-		//this.listaDePasajes = new ArrayList<>();
+		// this.listaDePasajes = new ArrayList<>();
 		this.vuelos = new TreeSet<>();
 		this.pasajes = new ArrayList<>();
 
 	}
 
-	/*public Boolean agregarPasajeALaAerolinea(Pasajero pasajero, Pasaje pasaje) {
-		Boolean sePudoAgregar = false;
-		if (pasajero.getPasaje() != null) {
-			this.listaDePasajes.add(pasaje);
-			sePudoAgregar = true;
-		}
-		return sePudoAgregar;
-	}*/
-	
-	public boolean agregar(Vuelo vuelo) {
+	/*
+	 * public Boolean agregarPasajeALaAerolinea(Pasajero pasajero, Pasaje pasaje) {
+	 * Boolean sePudoAgregar = false; if (pasajero.getPasaje() != null) {
+	 * this.listaDePasajes.add(pasaje); sePudoAgregar = true; } return
+	 * sePudoAgregar; }
+	 */
+
+	public boolean agregarVuelo(Vuelo vuelo) {
 		// if (this.buscarVuelo(vuelo.getIdVuelo())==null)
 		return this.vuelos.add(vuelo);
 		// return false;
@@ -53,26 +51,44 @@ public class Aerolinea {
 		return null;
 	}
 
-	public void agregar(Pasaje pasaje) {
+	public void agregarPasaje(Pasaje pasaje) {
 		this.pasajes.add(pasaje);
 
 	}
-	public Boolean asignarAsientoParaUnPasaje(Pasaje pasaje, String asciento) {
+
+	public Boolean asignarAsientoParaUnPasaje(Pasaje pasaje, String asciento)
+			throws FormatoDeAsientoInvalidoException, AsientoOcupadoException {
 		boolean asignacion = false;
+		// Pasaje pasaje = buscarPasaje (vuelo,pasajero);
+//		if (!estaOcupadoElAsciento(pasaje.getVuelo(), asciento)) {
+//			pasaje.setAsciento(asciento);
+//			asignacion = true;
+//		}
+//		return asignacion;
+		if (!validarNumeroDeAsiento(asciento))
+			return false;
 		// Pasaje pasaje = buscarPasaje (vuelo,pasajero);
 		if (!estaOcupadoElAsciento(pasaje.getVuelo(), asciento)) {
 			pasaje.setAsciento(asciento);
-			asignacion = true;
+			return true;
 		}
 		return asignacion;
 	}
 
-	public boolean estaOcupadoElAsciento(Vuelo vuelo, String asciento) {
+	public Boolean validarNumeroDeAsiento(String asiento) throws FormatoDeAsientoInvalidoException {
+		if (asiento.length() == 3 || asiento.length() == 2) {
+			// asiento.charAt(5);
+			return true;
+		}
+		throw new FormatoDeAsientoInvalidoException("Formato invalido");
+	}
+
+	public boolean estaOcupadoElAsciento(Vuelo vuelo, String asciento) throws AsientoOcupadoException {
 		for (Pasaje pasaje : pasajes) {
-			if(pasaje.getVuelo().equals(vuelo)&&pasaje.getAsciento().equals(asciento))
+			if (pasaje.getVuelo().equals(vuelo) && pasaje.getAsciento().equals(asciento))
 				return true;
 		}
-		return false;
+		throw new AsientoOcupadoException("El asiento esta ocupado");
 	}
 
 	public void subirAlvuelo(Pasaje pasaje) {
@@ -80,38 +96,47 @@ public class Aerolinea {
 	}
 
 	public List<Pasajero> obternerPasajerosAusentes(Vuelo vuelo) {
-	List <Pasajero> ausentes = new ArrayList <>();
-	for (Pasaje pasaje : this.pasajes) {
-		if(pasaje.getVuelo().equals(vuelo) && pasaje.isChequeado()==false)
-			ausentes.add(pasaje.getPasajero());
-	}
-	
-	return ausentes;
+		List<Pasajero> ausentes = new ArrayList<>();
+		for (Pasaje pasaje : this.pasajes) {
+			if (pasaje.getVuelo().equals(vuelo) && pasaje.isChequeado() == false)
+				ausentes.add(pasaje.getPasajero());
+		}
+
+		return ausentes;
 	}
 
-	public TreeSet<Vuelo> obtenerListaDeVuelosOrdenadasPorPrecioYID(){
+	public TreeSet<Vuelo> obtenerListaDeVuelosOrdenadasPorPrecioYID() {
 		TreeSet<Vuelo> vuelosOrdenados = new TreeSet<>(new OrdenPrecioId());
-		//xxx x = new OrdenPrecioID();
+		// xxx x = new OrdenPrecioID();
 		vuelosOrdenados.addAll(vuelos);
 		return vuelosOrdenados;
 	}
-	
-	public TreeSet<Pasaje> obtenerListaDePasajeOrdenadoPorVueloYAsiento(){
+
+	public TreeSet<Pasaje> obtenerListaDePasajeOrdenadoPorVueloYAsiento() {
 		TreeSet<Pasaje> pasajesOrdenadosporVuelosYAsientos = new TreeSet<>(new OrdenPasajeVueloYAsiento());
 		pasajesOrdenadosporVuelosYAsientos.addAll(pasajes);
 		return pasajesOrdenadosporVuelosYAsientos;
 	}
-	
+
 	public Set<Vuelo> getVuelos() {
 		return vuelos;
 	}
 
-	/*public Pasajero getPasajero() {
-		return pasajero;
+	public void setVuelos(Set<Vuelo> vuelos) {
+		this.vuelos = vuelos;
 	}
 
-	public void setPasajero(Pasajero pasajero) {
-		this.pasajero = pasajero;
+	/*
+	 * public Pasajero getPasajero() { return pasajero; }
+	 * 
+	 * public void setPasajero(Pasajero pasajero) { this.pasajero = pasajero; }
+	 */
+	public List<Pasaje> getPasajes() {
+		return pasajes;
+	}
+
+	public void setPasajes(List<Pasaje> pasajes) {
+		this.pasajes = pasajes;
 	}
 
 	public String getNombre() {
@@ -120,6 +145,6 @@ public class Aerolinea {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
-	}*/
+	}
 
 }

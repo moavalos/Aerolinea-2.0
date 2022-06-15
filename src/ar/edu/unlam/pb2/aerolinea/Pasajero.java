@@ -8,7 +8,6 @@ public class Pasajero extends Persona {
 	
 	// LOS METODOS Y VARIABLES VIP PASARIAN A SER UNA CLASE APARTE PERO LO VOY A DEJAR ASI 
 	private Boolean vip;
-	
 	private Integer dni;
 
 	public Pasajero(String nombre, String apellido, Integer dni, Double saldo, Boolean vip) {

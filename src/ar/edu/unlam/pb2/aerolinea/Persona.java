@@ -1,6 +1,8 @@
 package ar.edu.unlam.pb2.aerolinea;
 
 public abstract class Persona {
+	
+	// es una mierda la superclase persona pero lo dejo asi por las dudas quien sabe
 	private String nombre;
 	private String apellido;
 	private Integer dni;

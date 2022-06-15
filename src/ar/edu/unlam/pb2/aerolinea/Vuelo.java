@@ -3,7 +3,7 @@ package ar.edu.unlam.pb2.aerolinea;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-public class Vuelo {
+public class Vuelo implements Comparable<Vuelo>{
 	/*
 	 * private String origen; 
 	 * private String destino; 
