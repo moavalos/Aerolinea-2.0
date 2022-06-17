@@ -14,8 +14,7 @@ public class TestAerolinea {
 	@Test
 	public void queSePuedaComprarUnPasajeParaUnPasajeroEnUnVuelo() {
 		Pasajero pasajero = new Pasajero("pepe", "tonto", 5782252, 900.0, true); // el precio es el pasaje
-		// si el saldo del pasajero es menor al precio del pasaje, esto daria
-		// falso.(cambiar el precio para corroborar)
+		// si el saldo del pasajero es menor al precio del pasaje, esto daria falso.(cambiar el precio para corroborar)
 		Vuelo vuelo1 = new Vuelo(25, "Bariloche", "Mendoza", LocalDateTime.of(2014, 1, 26, 10, 40),
 				LocalDateTime.of(2014, 1, 27, 19, 30), 500.0);
 		Pasaje pasaje1 = new Pasaje(vuelo1, pasajero);
@@ -52,8 +51,7 @@ public class TestAerolinea {
 		Double valorEsperado = pasajero.getSaldo() * (porcentaje / 100);
 		Double valorObtenido = pasajero.getPasaje().getPrecio();
 		assertEquals(valorEsperado, valorObtenido);
-		// el asiento ya esta asignado, no hace falta el test 4.que se pueda asignar un
-		// asiento para un pasajero en un vuelo
+		// el asiento ya esta asignado, no hace falta el test 4.que se pueda asignar un asiento para un pasajero en un vuelo
 
 	}
 
