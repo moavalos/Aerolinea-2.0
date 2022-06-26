@@ -95,6 +95,7 @@ public class Vuelo implements Comparable<Vuelo>{
 		return this.aeropuertoOrigen.compareTo(o.aeropuertoOrigen);
 	}
 	
+	
 	public Integer getIdVuelo() {
 		return idVuelo;
 	}

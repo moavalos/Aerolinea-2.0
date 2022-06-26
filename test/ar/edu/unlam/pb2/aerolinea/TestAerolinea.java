@@ -3,14 +3,14 @@ package ar.edu.unlam.pb2.aerolinea;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
+
 import java.time.LocalDateTime;
 import java.util.List;
-import static org.junit.Assert.assertTrue;
-import org.junit.Assert;
+
 import org.junit.Test;
 
 public class TestAerolinea {
-
+	
 	@Test
 	public void queSePuedaComprarUnPasajeParaUnPasajeroEnUnVuelo() {
 		Pasajero pasajero = new Pasajero("pepe", "tonto", 5782252, 900.0, true); // el precio es el pasaje
